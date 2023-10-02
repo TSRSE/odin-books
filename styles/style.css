@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root{
+    --color-background: #25262C;
+    --color-backboard: #1B1C20;
+    --color-text-white: #fff;
+    --color-text-accent: #6B6D83;
+    --color-primary: #709DFF;
+    --color-secondary: #9191E5;
+    --color-dash: #505367;
+}
+
+.red{
+    background-color: #ED4242;
+}
+
+.yellow{
+    color: #DCCE54;
+}
+
+.green{
+    color: #91C777;
+}
+
+.accent{
+    background-color: var(--color-text-accent);
+}
+
+.secondary{
+    color: var(--color-secondary);
+}
+
+.primary{
+    color: var(--color-primary);
+}
+
+h1,h2,h3,h4,h5,p,a{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: var(--color-background);
+    color: var(--color-text-white);
+    font-family: 'Kumbh Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.container--center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.books--container{
+    display: flex;
+    width: auto;
+    margin-top: 24px;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.book--card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    background-color: var(--color-backboard);
+    padding: 32px 24px;
+    border-radius: 4px;
+    min-width: 200px;
+    min-height: 260px;
+    width: auto;
+}
+
+.card--info{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card--buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+button{
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: 16px;
+    color: var(--color-text-white);
+}
