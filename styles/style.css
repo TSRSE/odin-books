@@ -51,6 +51,10 @@ body{
     margin: 0px;
 }
 
+#addBookButton{
+    margin-top: 24px;
+}
+
 .container--center{
     display: flex;
     flex-direction: column;

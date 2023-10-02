@@ -1,5 +1,3 @@
-
-
 const myLibrary = loadFromLocalStorage();
 let INDEX_COUNTER = 0;
 
@@ -9,11 +7,6 @@ function Book(title, author, isRead, index) {
     this.title = title;
     this.isRead = isRead;
 }
-
-// addBookToLibrary(new Book('Warrior cats','Erric Hunter', true));
-// addBookToLibrary(new Book('Warrior cats','Erric Hunter', false));
-
-
 
 function addBookToLibrary(book) {
     book.index = INDEX_COUNTER;
@@ -73,11 +66,10 @@ function displayBooks(bookList){
 function saveToLocalStorage(){
     localStorage.clear();
     localStorage.setItem('library', JSON.stringify(myLibrary));
-    console.log(localStorage.getItem('library'));
 }
 
 function loadFromLocalStorage(){
-    return JSON.parse(localStorage.getItem('library'));
+    return localStorage.getItem('library') === 'undefined' ? [] : JSON.parse(localStorage.getItem('library'));
 }
 
 updateView();
@@ -89,6 +81,7 @@ function updateView(){
 }
 
 // Dialog logic
+
 const dialog = document.getElementById('dialog');
 
 const openDialogBtn = document.getElementById('addBookButton');
