@@ -1,9 +1,45 @@
 
-// import addElement from './bookCard.js';
 
-// import displayBook from './cardComponent';
+const myLibrary = loadFromLocalStorage();
+let INDEX_COUNTER = 0;
 
-const myLibrary = [];
+function Book(title, author, isRead, index) {
+    this.index = index;
+    this.author = author;
+    this.title = title;
+    this.isRead = isRead;
+}
+
+// addBookToLibrary(new Book('Warrior cats','Erric Hunter', true));
+// addBookToLibrary(new Book('Warrior cats','Erric Hunter', false));
+
+
+
+function addBookToLibrary(book) {
+    book.index = INDEX_COUNTER;
+    INDEX_COUNTER = INDEX_COUNTER+1;
+    myLibrary.push(book);
+    saveToLocalStorage();
+}
+
+function deleteFromLibrary(index){
+    myLibrary.pop(index);
+    saveToLocalStorage();
+}
+
+function updateBookStates(booksList){
+    booksList.forEach(element => {
+        let readBtn = document.getElementById(`readToggle-${element.index}`);
+        readBtn.onclick = () =>{
+            element.isRead = !element.isRead;
+            updateView();
+        }
+        document.getElementById(`delete-${element.index}`).onclick = () =>{
+            deleteFromLibrary(element.index);
+            updateView();
+        }
+    });
+}
 
 function createBookHTML(book){
     var bookCardHTML = '' + 
@@ -11,10 +47,10 @@ function createBookHTML(book){
     '    <div class="card--info">' + 
     `        <h1>${book.title}</h1>` + 
     `        <h3>${book.author}</h3>` + 
-    `        <p>${book.isRead ? 'true' : 'false'}</p>` + 
+    `        <p>${book.isRead ? 'Already read' : 'Need to read'}</p>` + 
     '    </div>' + 
     '    <div class="card--buttons">' + 
-    `        <button id="readToggle-${book.index}">isRead</button>` + 
+    `        <button id="readToggle-${book.index}" class="${book.isRead ? 'green' : 'red'}">${book.isRead ? 'Read' : 'Not read'}</button>` + 
     `        <button class="accent" id="delete-${book.index}">Delete</button>` + 
     '    </div>' + 
     '</div>' + 
@@ -22,35 +58,52 @@ function createBookHTML(book){
     return bookCardHTML;
 }
 
-function addBookToLibrary(book) {
-    myLibrary.push(book)
-}
-
-function createBookList(library){
+function createBookList(booksArray){
     let HTML = '';
-    library.forEach(element => {
+    booksArray.forEach(element => {
         HTML += createBookHTML(element);
     });
     return HTML;
 }
 
 function displayBooks(bookList){
-    document.getElementById('books-list');
-    console.log('yes')
     const tmp = createBookList(bookList);
     document.getElementById('books-list').innerHTML = tmp;
 }
 
-function Book(title, author, isRead) {
-  this.author = author;
-  this.title = title;
-  this.isRead = isRead;
+function saveToLocalStorage(){
+    localStorage.clear();
+    localStorage.setItem('library', JSON.stringify(myLibrary));
+    console.log(localStorage.getItem('library'));
 }
 
-addBookToLibrary(new Book('Warrior cats','Erric Hunter', true));
-addBookToLibrary(new Book('Warrior cats2','Erric Hunter', false));
+function loadFromLocalStorage(){
+    return JSON.parse(localStorage.getItem('library'));
+}
 
-display();
-function display(){
+updateView();
+
+function updateView(){
     displayBooks(myLibrary);
+    updateBookStates(myLibrary);
 }
+
+// Dialog logic
+const dialog = document.getElementById('dialog');
+
+const openDialogBtn = document.getElementById('addBookButton');
+openDialogBtn.addEventListener('click', () => {
+    dialog.showModal();
+})
+
+const inputTitle = document.getElementById('book-title');
+const inputAuthor = document.getElementById('book-author');
+const inputIsRead = document.getElementById('book-isRead');
+
+const confirmBtn = document.getElementById('confirm_btn');
+confirmBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    dialog.close();
+    addBookToLibrary(new Book(inputTitle.value, inputAuthor.value, inputIsRead.checked))
+    updateView();
+})

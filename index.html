@@ -11,5 +11,29 @@
     <button id="addBookButton">+ Add book</button>
         <div class="books--container" id="books-list"></div>
     </div>
+
+    <dialog class="backboard" id="dialog">
+        <form class="form--container">
+            <div class="column">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="book-title" placeholder="Title">
+            </div>
+            
+            <div class="column">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="book-author" placeholder="Author">
+            </div>
+            
+            <div class="row">
+                <input type="checkbox" name="isRead" id="book-isRead">
+                <label for="isRead">This book is read</label>
+            </div>
+
+            <div>
+                <button id="confirm_btn" value="default">Confirm</button>
+                <button value="cancel" formmethod="dialog" class="accent">Cancel</button>
+            </div>
+          </form>
+    </dialog>
 </body>
 </html>

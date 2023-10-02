@@ -19,7 +19,7 @@
 }
 
 .green{
-    color: #91C777;
+    background-color: #91C777;
 }
 
 .accent{
@@ -99,4 +99,38 @@ button{
     padding: 10px 24px;
     font-size: 16px;
     color: var(--color-text-white);
+}
+
+/* Dialog */
+
+::backdrop{
+    background-image: linear-gradient(
+    black,
+    black
+  );
+  opacity: 0.75;
+}
+
+.backboard{
+    background-color: var(--color-backboard);
+    color: var(--color-text-white);
+    border: none;
+    border-radius: 8px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.form--container{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
