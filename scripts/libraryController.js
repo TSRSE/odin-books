@@ -19,12 +19,10 @@ function addBookToLibrary(book) {
     book.index = INDEX_COUNTER;
     INDEX_COUNTER = INDEX_COUNTER+1;
     myLibrary.push(book);
-    saveToLocalStorage();
 }
 
 function deleteFromLibrary(index){
     myLibrary.pop(index);
-    saveToLocalStorage();
 }
 
 function updateBookStates(booksList){
@@ -39,6 +37,7 @@ function updateBookStates(booksList){
             updateView();
         }
     });
+
 }
 
 function createBookHTML(book){
@@ -86,6 +85,7 @@ updateView();
 function updateView(){
     displayBooks(myLibrary);
     updateBookStates(myLibrary);
+    saveToLocalStorage();
 }
 
 // Dialog logic
