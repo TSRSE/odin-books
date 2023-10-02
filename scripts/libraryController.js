@@ -1,4 +1,4 @@
-const myLibrary = loadFromLocalStorage();
+const myLibrary = [];
 let INDEX_COUNTER = 0;
 
 function Book(title, author, isRead, index) {
@@ -69,8 +69,9 @@ function saveToLocalStorage(){
 }
 
 function loadFromLocalStorage(){
-    return localStorage.getItem('library') === 'undefined' ? [] : JSON.parse(localStorage.getItem('library'));
+    myLibrary = localStorage.getItem('library') === 'undefined' ? [] : JSON.parse(localStorage.getItem('library'));
 }
+
 
 updateView();
 
